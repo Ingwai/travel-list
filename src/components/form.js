@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+const Form = ({ onAddItems }) => {
 	const [description, setDescription] = useState('');
 	const [quantity, setQuantity] = useState(1);
 
@@ -8,9 +8,10 @@ const Form = () => {
 		e.preventDefault();
 		if (!description) return;
 		const newItem = { id: Date.now(), description: description, quantity: quantity, packed: false };
+
+		onAddItems(newItem);
 		setQuantity(1);
 		setDescription('');
-		return newItem;
 	};
 
 	const descriptionHandler = e => {
